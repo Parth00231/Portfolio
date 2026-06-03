@@ -1,16 +1,21 @@
-# React + Vite
+# Parth Rastogi | Portfolio ⚡
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my personal portfolio repository! This project is a highly interactive, responsive, and performance-driven web application built to showcase my journey as a Web Developer.
 
-Currently, two official plugins are available:
+### 🌐 Live Website: [Insert Your Vercel Link Here]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ About The Project
+This portfolio features a modern cyber-aesthetic with:
+- **Interactive Visuals:** Custom-built procedural lightning animations and floating elements.
+- **Dynamic Audio:** Web Audio API synthesized thunder and electric effects built entirely in code.
+- **Glassmorphism Design:** Beautiful, translucent UI elements with neon accents.
+- **Fully Responsive:** Perfectly optimized for mobile, tablet, and desktop viewing.
 
-## React Compiler
+## 🛠️ Built With
+- **React 18** & **Vite**
+- **Tailwind CSS**
+- **Framer Motion** (for smooth scroll reveals)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📬 Let's Connect
+- **GitHub:** [@Parth00231](https://github.com/Parth00231)
+- **LinkedIn:** [Parth Rastogi](https://www.linkedin.com/in/parth-rastogi-7186ba336)

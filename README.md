@@ -2,7 +2,7 @@
 
 Welcome to my personal portfolio repository! This project is a highly interactive, responsive, and performance-driven web application built to showcase my journey as a Web Developer.
 
-### 🌐 Live Website: [Insert Your Vercel Link Here]
+### 🌐 Live Website: [https://parthrastogi.vercel.app/](https://parthrastogi.vercel.app/)
 
 ## ✨ About The Project
 This portfolio features a modern cyber-aesthetic with:

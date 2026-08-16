@@ -26,7 +26,14 @@ export default function CanvasBackground() {
 
     // Stars
     let stars = [];
-    const numStars = window.innerWidth > 768 ? 1200 : 500;
+    const numStars = window.innerWidth > 768 ? 900 : 400;
+
+    const starColors = [
+      'rgba(255, 255, 255, ',
+      'rgba(14, 165, 233, ', // cyan
+      'rgba(168, 85, 247, ', // violet
+      'rgba(224, 231, 255, ', // ice white
+    ];
 
     const initStars = () => {
       stars = [];
@@ -34,14 +41,30 @@ export default function CanvasBackground() {
         stars.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          radius: Math.random() * 1.5,
-          alpha: Math.random(),
-          velocity: (Math.random() - 0.5) * 0.02,
+          radius: Math.random() * 1.4 + 0.3,
+          alpha: Math.random() * 0.8 + 0.2,
+          velocity: (Math.random() - 0.5) * 0.015,
+          color: starColors[Math.floor(Math.random() * starColors.length)],
         });
       }
     };
 
     initStars();
+
+    // Shooting Meteors
+    let meteors = [];
+    const createMeteor = () => {
+      if (Math.random() < 0.015 && meteors.length < 3) {
+        meteors.push({
+          x: Math.random() * width * 1.2,
+          y: -50,
+          length: Math.random() * 80 + 40,
+          speed: Math.random() * 8 + 6,
+          angle: Math.PI / 4 + (Math.random() - 0.5) * 0.2,
+          alpha: 1,
+        });
+      }
+    };
 
     // Lightning
     let lightnings = [];
@@ -51,8 +74,8 @@ export default function CanvasBackground() {
       const clickY = e.clientY;
       lightnings.push(createLightning(clickX, clickY, width, height));
       
-      // Screen Flash
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.4)'; // brighter flash
+      // Screen Flash (subtle cyan/white tint)
+      ctx.fillStyle = 'rgba(14, 165, 233, 0.15)';
       ctx.fillRect(0, 0, width, height);
     };
 
@@ -90,13 +113,41 @@ export default function CanvasBackground() {
       // Draw stars
       stars.forEach(star => {
         star.alpha += star.velocity;
-        if (star.alpha <= 0.1 || star.alpha >= 1) star.velocity *= -1;
+        if (star.alpha <= 0.15 || star.alpha >= 0.95) star.velocity *= -1;
         
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+        ctx.fillStyle = `${star.color}${star.alpha})`;
         ctx.fill();
       });
+
+      // Spawn and draw meteors
+      createMeteor();
+      for (let i = meteors.length - 1; i >= 0; i--) {
+        const m = meteors[i];
+        m.x += Math.cos(m.angle) * m.speed;
+        m.y += Math.sin(m.angle) * m.speed;
+        m.alpha -= 0.012;
+
+        if (m.y > height + 100 || m.x < -100 || m.alpha <= 0) {
+          meteors.splice(i, 1);
+          continue;
+        }
+
+        const tailX = m.x - Math.cos(m.angle) * m.length;
+        const tailY = m.y - Math.sin(m.angle) * m.length;
+
+        const gradient = ctx.createLinearGradient(tailX, tailY, m.x, m.y);
+        gradient.addColorStop(0, 'rgba(14, 165, 233, 0)');
+        gradient.addColorStop(1, `rgba(255, 255, 255, ${m.alpha})`);
+
+        ctx.beginPath();
+        ctx.moveTo(tailX, tailY);
+        ctx.lineTo(m.x, m.y);
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
 
       // Draw lightnings
       for (let i = lightnings.length - 1; i >= 0; i--) {
@@ -108,10 +159,10 @@ export default function CanvasBackground() {
         }
 
         ctx.beginPath();
-        ctx.strokeStyle = `rgba(220, 230, 255, ${l.life})`;
-        ctx.lineWidth = 1.5 + Math.random() * 1;
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = 'rgba(150, 200, 255, 0.8)';
+        ctx.strokeStyle = `rgba(0, 242, 254, ${l.life})`;
+        ctx.lineWidth = 2;
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = 'rgba(0, 242, 254, 0.9)';
         
         l.segments.forEach(seg => {
           ctx.moveTo(seg.x1, seg.y1);
@@ -137,7 +188,8 @@ export default function CanvasBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] opacity-70"
+      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-80"
     />
   );
 }
+

@@ -1,10 +1,17 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function LightningCursor() {
   const canvasRef = useRef(null);
+  const [isTouch, setIsTouch] = useState(false);
 
   useEffect(() => {
+    if (window.innerWidth <= 768 || 'ontouchstart' in window) {
+      setIsTouch(true);
+      return;
+    }
+
     const canvas = canvasRef.current;
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let animationFrameId;
     let width = window.innerWidth;
@@ -67,12 +74,10 @@ export default function LightningCursor() {
         }
       };
       
-      // Initial displacement magnitude based on distance (increased for more erratic branching)
       const dist = Math.hypot(x2 - x1, y2 - y1);
       createBranch(x1, y1, x2, y2, dist * 0.4);
 
       ctx.beginPath();
-      // Strobe effect: randomly dip opacity
       const strobe = opacity * (Math.random() > 0.2 ? 1 : 0.1);
       ctx.strokeStyle = `hsla(${hue}, 100%, 80%, ${strobe})`;
       ctx.lineWidth = (Math.random() * 4 + 1) * (opacity + 0.2); 
@@ -91,39 +96,39 @@ export default function LightningCursor() {
       ctx.clearRect(0, 0, width, height);
 
       // Cycle color (Neon Teal -> Violet -> Cosmic Pink -> Electric Blue)
-      hue += 1;
+      hue += 0.8;
       if (hue > 360) hue = 0;
 
       // Draw Proximity Lightning Arcs
       interactables.forEach(({ rect }) => {
-        // Calculate center of the element
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
 
         const distToCenter = Math.hypot(centerX - mouse.x, centerY - mouse.y);
 
-        if (distToCenter < 250 && distToCenter > 0) {
-          // Find nearest edge point by clamping mouse coords to the rect
+        if (distToCenter < 220 && distToCenter > 0) {
           const edgeX = Math.max(rect.left, Math.min(mouse.x, rect.right));
           const edgeY = Math.max(rect.top, Math.min(mouse.y, rect.bottom));
           
           const edgeDist = Math.hypot(edgeX - mouse.x, edgeY - mouse.y);
           
-          if (edgeDist < 250) {
-            const opacity = 1 - (edgeDist / 250);
+          if (edgeDist < 220) {
+            const opacity = 1 - (edgeDist / 220);
             drawLightning(mouse.x, mouse.y, edgeX, edgeY, opacity);
           }
         }
       });
 
       // Draw Core Pointer
-      ctx.beginPath();
-      ctx.arc(mouse.x, mouse.y, 6, 0, Math.PI * 2); // 12px diameter
-      ctx.fillStyle = `hsl(${hue}, 100%, 70%)`;
-      ctx.shadowBlur = 15;
-      ctx.shadowColor = `hsl(${hue}, 100%, 50%)`;
-      ctx.fill();
-      ctx.shadowBlur = 0;
+      if (mouse.x > 0 && mouse.y > 0) {
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, 5, 0, Math.PI * 2);
+        ctx.fillStyle = `hsl(${hue}, 100%, 75%)`;
+        ctx.shadowBlur = 14;
+        ctx.shadowColor = `hsl(${hue}, 100%, 50%)`;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
 
       animationFrameId = requestAnimationFrame(draw);
     };
@@ -139,6 +144,8 @@ export default function LightningCursor() {
     };
   }, []);
 
+  if (isTouch) return null;
+
   return (
     <canvas
       ref={canvasRef}
@@ -146,3 +153,4 @@ export default function LightningCursor() {
     />
   );
 }
+

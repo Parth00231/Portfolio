@@ -46,8 +46,6 @@ export default function CanvasBackground() {
     // Lightning
     let lightnings = [];
 
-    const thunderAudio = new Audio('https://actions.google.com/sounds/v1/weather/thunder_crack.ogg');
-
     const handleGlobalClick = (e) => {
       const clickX = e.clientX;
       const clickY = e.clientY;
@@ -56,12 +54,6 @@ export default function CanvasBackground() {
       // Screen Flash
       ctx.fillStyle = 'rgba(255, 255, 255, 0.4)'; // brighter flash
       ctx.fillRect(0, 0, width, height);
-      
-      // Play Thunder Sound with varying pitch/speed and louder volume
-      const sound = thunderAudio.cloneNode();
-      sound.volume = 0.6 + Math.random() * 0.4;
-      sound.playbackRate = 0.7 + Math.random() * 0.6; // Simulates distance/intensity
-      sound.play().catch(err => console.log('Audio play failed:', err));
     };
 
     window.addEventListener('click', handleGlobalClick);

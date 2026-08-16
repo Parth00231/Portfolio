@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Award, Shield, Cloud, Cpu, Database, BarChart, Eye, X } from 'lucide-react';
-import { playThunderStrike } from '../../utils/audio';
 
 import cert1 from '../../assets/Certificate Prompting Essentials completion .pdf';
 import cert2 from '../../assets/Certificate AI Essentials completion.pdf';
@@ -26,7 +25,6 @@ export default function Certifications() {
   const [flash, setFlash] = useState(false);
 
   const handleHover = () => {
-    playThunderStrike();
     setFlash(true);
     setTimeout(() => setFlash(false), 150);
   };

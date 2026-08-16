@@ -7,7 +7,6 @@ Welcome to my personal portfolio repository! This project is a highly interactiv
 ## ✨ About The Project
 This portfolio features a modern cyber-aesthetic with:
 - **Interactive Visuals:** Custom-built procedural lightning animations and floating elements.
-- **Dynamic Audio:** Web Audio API synthesized thunder and electric effects built entirely in code.
 - **Glassmorphism Design:** Beautiful, translucent UI elements with neon accents.
 - **Fully Responsive:** Perfectly optimized for mobile, tablet, and desktop viewing.
 

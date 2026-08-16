@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Code, ExternalLink } from 'lucide-react';
 import digitalTwinImg from '../../assets/Digital_twin.png';
 import hackingSimuImg from '../../assets/Hacking_simu.png';
-import { playThunderStrike } from '../../utils/audio';
 
 const PROJECTS = [
   {
@@ -26,7 +25,6 @@ export default function Projects() {
   const [flash, setFlash] = useState(false);
 
   const handleHover = () => {
-    playThunderStrike();
     setFlash(true);
     setTimeout(() => setFlash(false), 150);
   };

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { playThunderStrike } from '../../utils/audio';
 
 const SOCIALS = [
   {
@@ -39,7 +38,6 @@ export default function Connect() {
   const [flash, setFlash] = useState(false);
 
   const handleHover = () => {
-    playThunderStrike();
     setFlash(true);
     setTimeout(() => setFlash(false), 150);
   };

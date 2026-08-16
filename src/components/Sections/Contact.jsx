@@ -116,8 +116,8 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-center gap-3 text-xs text-slate-300">
-                  <div className="p-2 rounded-lg bg-white/5 text-emerald-400">
-                    <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                  <div className="p-2 rounded-lg bg-white/5 text-emerald-400 flex items-center justify-center">
+                    <div className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" />
                   </div>
                   <div>
                     <p className="text-slate-400 font-mono uppercase text-[10px]">Status</p>

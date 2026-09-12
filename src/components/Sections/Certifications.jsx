@@ -28,7 +28,7 @@ const CERTIFICATIONS = [
   { title: "Power BI Workshop", issuer: "OfficeMaster", year: "2025", category: "Data Analytics", icon: BarChart, pdf: cert7 },
   { title: "AI Tools Workshop", issuer: "Be10x", year: "2026", category: "AI & GenAI", icon: Database, pdf: cert5 },
   { title: "Generative AI Mastermind", issuer: "Outskill", year: "2025", category: "AI & GenAI", icon: Award, pdf: cert6 },
-  { title: "IICT Professional Certification", issuer: "IICT", year: "2026", category: "Academic & Leadership", icon: Award, pdf: cert12 },
+  { title: "IICT Professional Certification", issuer: "IICT", year: "2026", category: "AI & GenAI", icon: Cpu, pdf: cert12 },
   { title: "QS I-GAUGE Certification", issuer: "QS I-GAUGE", year: "2025", category: "Academic & Leadership", icon: Award, pdf: cert8 },
 ];
 

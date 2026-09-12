@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Download, Eye, X, ExternalLink } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import resumePDF from '../../assets/Parth_Rastogi_Resume(PDF).pdf';
+import resumePDF from '../../assets/Parth_Rastogi_Resume.pdf';
 import avatarImg from '../../assets/Avatar.png';
 
 export default function Hero() {

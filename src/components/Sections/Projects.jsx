@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Code2, ExternalLink, Sparkles, Terminal, Cpu } from 'lucide-react';
+import { Code2, Sparkles, GraduationCap, Bot } from 'lucide-react';
 import digitalTwinImg from '../../assets/Digital_twin.png';
-import hackingSimuImg from '../../assets/Hacking_simu.png';
+import aiRevisionTutorImg from '../../assets/AI Revision Tutor Interface.png';
+import interviewAssistantImg from '../../assets/Interview Assistant Interface.png';
 
 const PROJECTS = [
   {
@@ -17,14 +18,25 @@ const PROJECTS = [
     featured: true,
   },
   {
-    title: 'Hacking Simulation Interface',
-    tagline: 'Terminal-Based Cyber Environment',
-    category: 'Simulation & Web',
-    icon: Terminal,
-    description: 'An immersive, responsive terminal simulator built in JavaScript featuring custom command execution engines, system diagnostics, and simulated cybersecurity mechanics.',
-    tech: ['JavaScript', 'HTML5', 'CSS3', 'Terminal API'],
-    github: 'https://github.com/Parth00231/Hacker-s-Terminal.git',
-    image: hackingSimuImg,
+    title: 'AI Revision Tutor',
+    tagline: 'AI-Driven Study & Exam Preparation',
+    category: 'AI & Education',
+    icon: GraduationCap,
+    description: 'An AI-powered Revision Assistant & RAG system built on course videos transcripts using Qdrant Vector Search, Groq LLM, FastAPI, and a glassmorphism SPA.',
+    tech: ['React', 'Python', 'FastAPI', 'Whisper', 'Sentence Transformers', 'Tailwind CSS', 'Groq API', 'RAG', 'Qdrant Vector DB'],
+    github: 'https://github.com/Parth00231/AI-Revision-Tutor',
+    image: aiRevisionTutorImg,
+    featured: true,
+  },
+  {
+    title: 'Interview Assistant',
+    tagline: 'Real-Time AI Mock Interview Coach',
+    category: 'AI & Career',
+    icon: Bot,
+    description: 'An AI-powered candidate interview system built with FastAPI, Groq LLM, and PyPDF. Parses candidate resumes into structured Pydantic schemas and features an interactive real-time HR chat interface',
+    tech: ['Html5', 'CSS3', 'Javascript', 'Python', 'FastAPI', 'Groq API', 'PyPDF', 'Pydantic', 'Uvicorn'],
+    github: 'https://github.com/Parth00231/Interview-Assistant',
+    image: interviewAssistantImg,
     featured: true,
   }
 ];
@@ -40,15 +52,15 @@ export default function Projects() {
   return (
     <section id="projects" className="py-32 px-6 relative z-10 border-t border-white/5 bg-space-950/40">
       {flash && <div className="fixed inset-0 z-50 bg-cyan-400/10 pointer-events-none mix-blend-screen" />}
-      
-      <div className="max-w-6xl mx-auto">
-        
+
+      <div className="max-w-7xl mx-auto">
+
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16"
+          className="mb-16"
         >
           <div>
             <div className="flex items-center gap-3 mb-2">
@@ -61,20 +73,10 @@ export default function Projects() {
               Production-ready applications and interactive software experiments.
             </p>
           </div>
-          
-          <a
-            href="https://github.com/Parth00231"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-cyan-400 hover:text-cyan-300 transition-colors self-start md:self-auto"
-          >
-            <span>View GitHub Profile</span>
-            <ExternalLink className="w-3.5 h-3.5" />
-          </a>
         </motion.div>
 
         {/* Project Cards Grid */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {PROJECTS.map((project, idx) => (
             <motion.div
               key={project.title}
@@ -82,7 +84,7 @@ export default function Projects() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.2 }}
+              transition={{ delay: idx * 0.15 }}
               className="group relative rounded-2xl bg-space-900/70 border border-white/10 hover:border-cyan-400/40 backdrop-blur-xl overflow-hidden shadow-xl hover:shadow-[0_0_35px_rgba(14,165,233,0.2)] transition-all duration-500 flex flex-col justify-between"
             >
               {/* Corner Cyber Brackets */}
@@ -95,9 +97,9 @@ export default function Projects() {
               <div>
                 {/* Image Showcase Container */}
                 <div className="relative h-56 w-full overflow-hidden bg-space-950 border-b border-white/5">
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
+                  <img
+                    src={project.image}
+                    alt={project.title}
                     className="w-full h-full object-cover object-center opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 filter contrast-105"
                     onError={(e) => {
                       e.target.style.display = 'none';
@@ -124,12 +126,12 @@ export default function Projects() {
                   <p className="text-slate-300 text-sm leading-relaxed mb-6 font-light">
                     {project.description}
                   </p>
-                  
+
                   {/* Tech Stack Pills */}
                   <div className="flex flex-wrap gap-2">
                     {project.tech.map((t) => (
-                      <span 
-                        key={t} 
+                      <span
+                        key={t}
                         className="text-xs px-2.5 py-1 rounded-md bg-space-850 border border-white/5 text-slate-300 font-medium group-hover:border-cyan-500/20 transition-colors"
                       >
                         {t}
@@ -142,9 +144,9 @@ export default function Projects() {
               {/* Card Footer Actions */}
               <div className="p-6 pt-0 mt-4">
                 <div className="pt-4 border-t border-white/5 flex items-center justify-between">
-                  <a 
-                    href={project.github} 
-                    target="_blank" 
+                  <a
+                    href={project.github}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 hover:text-white text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-sm group/btn"
                   >
@@ -161,4 +163,5 @@ export default function Projects() {
     </section>
   );
 }
+
 

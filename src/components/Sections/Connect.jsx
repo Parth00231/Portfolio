@@ -31,9 +31,9 @@ const SOCIALS = [
   },
   {
     name: 'LeetCode',
-    handle: 'Parth_Rastogi',
+    handle: '_P_R_',
     description: 'Data structures & algorithmic problem solving',
-    url: 'https://leetcode.com/u/Parth_Rastogi/',
+    url: 'https://leetcode.com/u/_P_R_/',
     color: '#f59e0b',
     badge: 'Algorithms & DSA',
     icon: (

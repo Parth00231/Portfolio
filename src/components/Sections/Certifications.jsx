@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Zap, Award, Shield, Cloud, Cpu, Database, BarChart, Eye, X, ExternalLink } from 'lucide-react';
+import { Zap, Award, Shield, Cloud, Cpu, Database, BarChart, Eye, X, ExternalLink, Sparkles } from 'lucide-react';
 
 import cert1 from '../../assets/Certificate Prompting Essentials completion .pdf';
 import cert2 from '../../assets/Certificate AI Essentials completion.pdf';
@@ -10,19 +10,29 @@ import cert5 from '../../assets/Certificate Be10x.pdf';
 import cert6 from '../../assets/Certificate Outskill.pdf';
 import cert7 from '../../assets/Certificate Power-Bi.pdf';
 import cert8 from '../../assets/Certificate QS-Igauge.pdf';
+import cert9 from '../../assets/Certificate AI TCS ion.pdf';
+import cert10 from '../../assets/Certificate Data Analytics Essentials.pdf';
+import cert11 from '../../assets/Certificate Google Gemini AI.pdf';
+import cert12 from '../../assets/Certificate IICT.pdf';
+import cert13 from '../../assets/Certificate Oracle Agentic AI.pdf';
 
 const CERTIFICATIONS = [
   { title: "Google Prompting Essentials", issuer: "Coursera / Google", year: "2026", category: "AI & GenAI", icon: Cpu, pdf: cert1 },
   { title: "Google AI Essentials", issuer: "Coursera / Google", year: "2026", category: "AI & GenAI", icon: Zap, pdf: cert2 },
-  { title: "Cyber Job Simulation", issuer: "Deloitte", year: "2026", category: "Cloud & Security", icon: Shield, pdf: cert3 },
+  { title: "Google Gemini AI Certification", issuer: "Google", year: "2026", category: "AI & GenAI", icon: Sparkles, pdf: cert11 },
+  { title: "Oracle Agentic AI Certified", issuer: "Oracle", year: "2026", category: "AI & GenAI", icon: Database, pdf: cert13 },
+  { title: "TCS iON Artificial Intelligence", issuer: "TCS iON", year: "2026", category: "AI & GenAI", icon: Cpu, pdf: cert9 },
   { title: "AWS Academy Cloud Foundations", issuer: "AWS Academy", year: "2026", category: "Cloud & Security", icon: Cloud, pdf: cert4 },
+  { title: "Cyber Job Simulation", issuer: "Deloitte", year: "2026", category: "Cloud & Security", icon: Shield, pdf: cert3 },
+  { title: "Data Analytics Essentials", issuer: "Cisco Networking Academy", year: "2026", category: "Data Analytics", icon: BarChart, pdf: cert10 },
+  { title: "Power BI Workshop", issuer: "OfficeMaster", year: "2025", category: "Data Analytics", icon: BarChart, pdf: cert7 },
   { title: "AI Tools Workshop", issuer: "Be10x", year: "2026", category: "AI & GenAI", icon: Database, pdf: cert5 },
   { title: "Generative AI Mastermind", issuer: "Outskill", year: "2025", category: "AI & GenAI", icon: Award, pdf: cert6 },
-  { title: "Power BI Workshop", issuer: "OfficeMaster", year: "2025", category: "Data Analytics", icon: BarChart, pdf: cert7 },
+  { title: "IICT Professional Certification", issuer: "IICT", year: "2026", category: "Academic & Leadership", icon: Award, pdf: cert12 },
   { title: "QS I-GAUGE Certification", issuer: "QS I-GAUGE", year: "2025", category: "Academic & Leadership", icon: Award, pdf: cert8 },
 ];
 
-const CATEGORIES = ['All', 'AI & GenAI', 'Cloud & Security', 'Data Analytics'];
+const CATEGORIES = ['All', 'AI & GenAI', 'Cloud & Security', 'Data Analytics', 'Academic & Leadership'];
 
 export default function Certifications() {
   const [selectedPdf, setSelectedPdf] = useState(null);
@@ -41,7 +51,7 @@ export default function Certifications() {
 
   const filteredCerts = selectedCategory === 'All' 
     ? CERTIFICATIONS 
-    : CERTIFICATIONS.filter(c => c.category === selectedCategory || (selectedCategory === 'Data Analytics' && c.category === 'Academic & Leadership'));
+    : CERTIFICATIONS.filter(c => c.category === selectedCategory);
 
   const handleHover = () => {
     setFlash(true);
